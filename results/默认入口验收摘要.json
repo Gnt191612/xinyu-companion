@@ -1,0 +1,10 @@
+{
+  "backend": "transformers",
+  "complete": true,
+  "rounds": 100,
+  "average_latency_ms": 3075.032766,
+  "median_latency_ms": 2471.600651,
+  "p95_latency_ms": 6008.91131,
+  "hardware_label": "NVIDIA GeForce RTX 4090 24GB",
+  "parse_failure_count": 1
+}

@@ -1,0 +1,19 @@
+{
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "seed": 42,
+  "steps": 512,
+  "max_length": 1536,
+  "examples": 2048,
+  "batch_size": 1,
+  "gradient_accumulation": 4,
+  "learning_rate": 0.0001,
+  "lora_rank": 8,
+  "实际模型路径": "模型/Qwen2.5-1.5B-Instruct",
+  "合并输出目录": "participant/model",
+  "target_modules": [
+    "q_proj",
+    "v_proj"
+  ],
+  "验证集参与训练": false,
+  "长目标处理": "目标超过640 token的训练点不用于本轮；不截断目标JSON"
+}
