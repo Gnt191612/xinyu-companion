@@ -4,6 +4,7 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import hashlib
 import json
+import re
 import subprocess
 from urllib.parse import urlencode
 
@@ -14,7 +15,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--target', type=Path, required=True)
     args = parser.parse_args()
-    metadata = json.loads((ROOT / '实验/Qwen3B魔搭仓库信息.json').read_text(encoding='utf-8'))
+    metadata = json.loads((ROOT / 'configs/qwen3b-files.json').read_text(encoding='utf-8-sig'))
     assert metadata['Success']
     names = {'LICENSE', 'README.md', 'config.json', 'generation_config.json', 'tokenizer.json',
              'tokenizer_config.json', 'merges.txt', 'vocab.json', 'model.safetensors.index.json',
@@ -73,6 +74,11 @@ def main():
         with target.open('rb') as handle:
             digest = hashlib.file_digest(handle, 'sha256').hexdigest()
         assert digest == item['Sha256']
+        # 完整权重验收后，分段不再用于训练；只删除本次文件名下的下载缓存。
+        for cached in args.target.glob(name + '.*'):
+            if re.fullmatch(re.escape(name) + r'\.(segment|remainder)-\d{4}', cached.name):
+                assert cached.resolve().parent == args.target.resolve()
+                cached.unlink()
         records.append({'文件': name, '字节': target.stat().st_size, 'sha256': digest})
         print(f'{name}大小和SHA256通过', flush=True)
     assert {item['文件'] for item in records} == names
