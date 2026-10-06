@@ -1,0 +1,10 @@
+{
+  "model_version": "v24体验版_step160_回复字段完成即返回",
+  "model_path": "participant/model",
+  "adapter_path": "participant/adapter",
+  "load_in_4bit": true,
+  "native_chat": false,
+  "companion_prompt_path": "体验/观点执行候选提示.txt",
+  "response_only_generation": true,
+  "cpu_threads": 1
+}

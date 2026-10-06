@@ -1,0 +1,49 @@
+{
+  "说明": "本地验证指标；画像为集合完全匹配和micro F1，不能等同官网未公开细则的画像平均准确率。",
+  "seed": 42,
+  "runs": {
+    "latest": {
+      "emotion_accuracy": 0.6440101954120646,
+      "emotion_macro_f1": 0.4297071466958186,
+      "profiles": {
+        "personality_traits": {
+          "exact_match": 0.6104502973661852,
+          "micro_f1": 0.1820689655172414
+        },
+        "interests": {
+          "exact_match": 0.7765505522514868,
+          "micro_f1": 0.2571428571428571
+        },
+        "style": {
+          "exact_match": 0.5276125743415463,
+          "micro_f1": 0.18668252080856124
+        }
+      },
+      "profile_mean_exact_match": 0.6382044746530727
+    },
+    "history": {
+      "emotion_accuracy": 0.48555649957519115,
+      "emotion_macro_f1": 0.2422267265568483,
+      "profiles": {
+        "personality_traits": {
+          "exact_match": 0.6304163126593033,
+          "micro_f1": 0.2761780104712042
+        },
+        "interests": {
+          "exact_match": 0.7935429056924383,
+          "micro_f1": 0.3594692400482509
+        },
+        "style": {
+          "exact_match": 0.5484282073067119,
+          "micro_f1": 0.2688598979013046
+        }
+      },
+      "profile_mean_exact_match": 0.6574624752194845
+    }
+  },
+  "majority_emotion_accuracy": 0.3190314358538658,
+  "elapsed_seconds": 208.74739070003852,
+  "sklearn_version": "1.7.2",
+  "训练预测点": 18653,
+  "验证预测点": 2354
+}

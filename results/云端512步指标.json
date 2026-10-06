@@ -1,0 +1,21 @@
+{
+  "samples": 100,
+  "emotion_accuracy": 0.64,
+  "emotion_macro_f1": 0.47468400144456485,
+  "profiles": {
+    "personality_traits": {
+      "exact_match": 0.38
+    },
+    "interests": {
+      "exact_match": 0.56
+    },
+    "style": {
+      "exact_match": 0.31
+    }
+  },
+  "profile_mean_exact_match": 0.4166666666666667,
+  "character_bleu4": 0.06723560257471727,
+  "character_rougeL_f1": 0.18370990060072181,
+  "empty_responses": 0,
+  "说明": "回复指标采用中文字符切分；画像为集合完全匹配。未计算BERTScore，未复现官方归一化，因此不能作为官方比赛分数。"
+}

@@ -1,0 +1,16 @@
+{
+  "当前基座": "Qwen/Qwen2.5-3B-Instruct",
+  "固定revision": "8f4992eda43eea7c770690ddc0de8f732da246f5",
+  "当前适配器": "v24 coverage_round step160",
+  "适配器sha256": "f4e78f699a4f98983a1d5b2545d2d91407b143fabefb6238bc7833ebb6d4f77f",
+  "当前基座许可": "Qwen RESEARCH LICENSE AGREEMENT",
+  "权重在公开候选中": false,
+  "历史第一版": {
+    "基座": "Qwen/Qwen2.5-1.5B-Instruct",
+    "固定revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+    "基座sha256": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee",
+    "本机512步合并sha256": "1cae9628fdea11d264680df59d690412418d973098c0a7bba08fcf95471ebdeb",
+    "云端512步合并sha256": "f2937662158d4689163d88169bc39b4153c8d42d73265a9bc65508a834420864",
+    "权重在公开候选中": false
+  }
+}
