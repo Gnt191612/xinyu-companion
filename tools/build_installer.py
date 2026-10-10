@@ -22,6 +22,7 @@ def main():
     parser.add_argument('--stage', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--compiler', type=Path, required=True)
+    parser.add_argument('--desktop', type=Path, required=True, help='包含心语.exe和_internal的便携启动器目录')
     args = parser.parse_args()
     project, stage = args.project.resolve(), args.stage.resolve()
     stage.mkdir(parents=True, exist_ok=True)
@@ -37,7 +38,7 @@ def main():
     copy_file(base_python / 'LICENSE.txt', runtime / 'LICENSE.txt')
     (runtime / 'Scripts' / 'python311._pth').write_text('.\n..\\DLLs\n..\\Lib\n..\\Lib\\site-packages\n..\\..\\体验\n..\\..\\participant\n', encoding='utf-8')
 
-    pending = ['torch', 'transformers', 'accelerate', 'peft', 'bitsandbytes', 'scikit-learn', 'joblib', 'numpy', 'pywebview']
+    pending = ['torch', 'transformers', 'accelerate', 'peft', 'bitsandbytes', 'scikit-learn', 'joblib', 'numpy']
     distributions = {}
     while pending:
         name = pending.pop()
@@ -64,7 +65,7 @@ def main():
     (stage / '运行环境版本.json').write_text(json.dumps({name: item.version for name, item in sorted(distributions.items())}, ensure_ascii=False, indent=2), encoding='utf-8')
     print('运行依赖已复制，开始复制界面与指定权重。', flush=True)
 
-    for name in ['chat_app.py', 'desktop_app.py', 'story_intent.py', 'index.html', 'motion.js', '开场.html', '观点执行候选提示.txt']:
+    for name in ['chat_app.py', 'desktop_edge.py', 'story_intent.py', 'index.html', 'motion.js', '开场.html', '观点执行候选提示.txt']:
         copy_file(project / '体验' / name, stage / '体验' / name)
     shutil.copytree(project / '体验' / 'assets', stage / '体验' / 'assets', dirs_exist_ok=True)
     for name in ['run_inference.py', 'auxiliary.py']:
@@ -76,7 +77,7 @@ def main():
     experience = json.loads((project / '体验' / 'config.json').read_text(encoding='utf-8-sig'))
     experience.update(model_path='participant/model', adapter_path='participant/adapter')
     (stage / '体验' / 'config.json').write_text(json.dumps(experience, ensure_ascii=False, indent=2), encoding='utf-8')
-    copy_file(project / '心语樱花版.exe', stage / '心语.exe')
+    shutil.copytree(args.desktop.resolve(), stage, dirs_exist_ok=True)
     source_repo = Path(__file__).resolve().parents[1]
     shutil.copytree(source_repo / 'licenses', stage / 'licenses', dirs_exist_ok=True)
     copy_file(source_repo / 'NOTICE', stage / 'NOTICE')

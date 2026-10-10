@@ -18,7 +18,9 @@ Built with Qwen. 基于 Qwen2.5-3B-Instruct 与 LoRA 的离线中文情感陪伴
 
 ## 安装与运行
 
-[下载 Windows 离线安装包](https://github.com/Gnt191612/xinyu-companion/releases/tag/v2.0.0)：将 exe 和同名5个 .bin 分卷全部下载到同一文件夹，双击 exe 安装，无需自行配置 Python。独立目录安装与三条后台聊天请求已验证；详细结果和限制见 docs/第二版安装验收.md。比赛期间仅仓库授权用户可下载。
+**桌面启动修复 v2.0.1**：[下载修复包](https://github.com/Gnt191612/xinyu-companion/releases/tag/v2.0.1)。已安装用户运行修复 exe 并选择原安装目录，无需重新下载模型。也可将 ZIP 全部内容解压覆盖到原目录，保留 `_internal` 文件夹。
+
+新用户先[下载完整离线包 v2.0.0](https://github.com/Gnt191612/xinyu-companion/releases/tag/v2.0.0)，将 exe 和同名 5 个 .bin 放在同一文件夹安装，再应用 v2.0.1 修复包。无需自行配置 Python，桌面入口需要系统已安装 Microsoft Edge。旧完整包必须配套此桌面修复；比赛期间仅仓库授权用户可下载。
 
 已验证开发环境为 Windows + NVIDIA RTX 4060、Python 3.11、CUDA 版 PyTorch。CPU、其他显卡和干净系统尚未完成验收，不能保证所有电脑的速度。模型采用约 3B 参数基座；版本号不代表参数规模累加。
 
@@ -35,4 +37,6 @@ Built with Qwen. 基于 Qwen2.5-3B-Instruct 与 LoRA 的离线中文情感陪伴
 比赛结束后，在确认官方派生代码、训练数据、分类器和角色素材的再分发许可后，由作者决定公开范围。仓库不会自动转公开。未明确许可的资源不因本项目发布而获得开放许可。
 
 清理建议需以远程备份恢复校验为前提，不能删除唯一权重或唯一实验记录。
+
+
 
