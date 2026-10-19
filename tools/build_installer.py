@@ -25,6 +25,8 @@ def main():
     parser.add_argument('--desktop', type=Path, required=True, help='包含心语.exe和_internal的便携启动器目录')
     args = parser.parse_args()
     project, stage = args.project.resolve(), args.stage.resolve()
+    if stage.exists() and any(stage.iterdir()):
+        raise RuntimeError('请使用新的空暂存目录，避免混入旧运行依赖。')
     stage.mkdir(parents=True, exist_ok=True)
     runtime = stage / '.venv'
     base_python = Path(sys.base_prefix)
@@ -65,7 +67,7 @@ def main():
     (stage / '运行环境版本.json').write_text(json.dumps({name: item.version for name, item in sorted(distributions.items())}, ensure_ascii=False, indent=2), encoding='utf-8')
     print('运行依赖已复制，开始复制界面与指定权重。', flush=True)
 
-    for name in ['chat_app.py', 'desktop_edge.py', 'story_intent.py', 'index.html', 'motion.js', '开场.html', '观点执行候选提示.txt']:
+    for name in ['chat_app.py', 'story_intent.py', 'index.html', 'motion.js', '开场.html', '观点执行候选提示.txt']:
         copy_file(project / '体验' / name, stage / '体验' / name)
     shutil.copytree(project / '体验' / 'assets', stage / '体验' / 'assets', dirs_exist_ok=True)
     for name in ['run_inference.py', 'auxiliary.py']:
@@ -79,6 +81,7 @@ def main():
     (stage / '体验' / 'config.json').write_text(json.dumps(experience, ensure_ascii=False, indent=2), encoding='utf-8')
     shutil.copytree(args.desktop.resolve(), stage, dirs_exist_ok=True)
     source_repo = Path(__file__).resolve().parents[1]
+    copy_file(source_repo / '体验' / 'desktop_edge.py', stage / '体验' / 'desktop_edge.py')
     shutil.copytree(source_repo / 'licenses', stage / 'licenses', dirs_exist_ok=True)
     copy_file(source_repo / 'NOTICE', stage / 'NOTICE')
     (stage / '启动网页版.cmd').write_text('@echo off\ncd /d "%~dp0"\nstart "" http://127.0.0.1:7860\n".venv\\Scripts\\python.exe" "体验\\chat_app.py"\npause\n', encoding='utf-8')
@@ -89,7 +92,7 @@ def main():
     script.write_text(f'''[Setup]
 AppId=XinyuCompanionResearchV24
 AppName=心语共鸣
-AppVersion=2.0.0
+AppVersion=2.0.2
 AppPublisher=心语共鸣项目
 DefaultDirName={{localappdata}}\\Programs\\XinyuCompanion
 DefaultGroupName=心语共鸣
@@ -97,7 +100,7 @@ PrivilegesRequired=lowest
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 OutputDir={args.output.resolve()}
-OutputBaseFilename=Xinyu-Setup-v2.0.0
+OutputBaseFilename=Xinyu-Setup-v2.0.2
 SetupIconFile={stage}\\体验\\assets\\心语.ico
 UninstallDisplayIcon={{app}}\\心语.exe
 Compression=lzma2/fast

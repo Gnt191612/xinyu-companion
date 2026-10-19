@@ -6,6 +6,7 @@ import sys
 import threading
 import time
 import urllib.request
+import webbrowser
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -74,15 +75,17 @@ def main():
     candidates = [Path(os.environ.get(key, '')) / 'Microsoft/Edge/Application/msedge.exe'
                   for key in ('PROGRAMFILES(X86)', 'PROGRAMFILES', 'LOCALAPPDATA')]
     edge = next((path for path in candidates if path.is_file()), None)
-    if edge is None:
-        raise RuntimeError('未找到 Microsoft Edge，请使用启动聊天体验.cmd。')
     server = ThreadingHTTPServer(('127.0.0.1', 0), OpeningHandler)
     threading.Thread(target=start_model, daemon=True).start()
     startup = subprocess.STARTUPINFO()
     startup.dwFlags |= subprocess.STARTF_USESHOWWINDOW
     startup.wShowWindow = 1
-    subprocess.Popen([str(edge), f'--app=http://127.0.0.1:{server.server_port}/', '--window-size=1280,820'],
-                     startupinfo=startup)
+    opening_url = f'http://127.0.0.1:{server.server_port}/'
+    if edge is not None:
+        subprocess.Popen([str(edge), f'--app={opening_url}', '--window-size=1280,820'],
+                         startupinfo=startup)
+    else:
+        webbrowser.open(opening_url)
     # 只关闭临时开场服务，模型服务继续保留，不结束其他 Edge 窗口。
     timer = threading.Timer(240, server.shutdown)
     timer.daemon = True
