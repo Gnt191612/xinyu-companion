@@ -1,3 +1,14 @@
 心语基于Qwen2.5-3B-Instruct进行LoRA微调。Built with Qwen.
 Qwen is licensed under the Qwen RESEARCH LICENSE AGREEMENT, Copyright (c) Alibaba Cloud. All Rights Reserved.
 自有修改包含陪伴专项训练、推理适配、监督分类器接入与聊天交互。官方派生代码许可待确认，本目录尚未公开。
+
+--------------------------------------------------------------------------
+本仓库源代码许可边界（2026-11-10 开源时补充）：
+
+1. 本仓库源代码（训练、评估、推理适配、交互与打包脚本）依根目录 LICENSE
+   （MIT License）发布，Copyright (c) 2026 Gnt191612（心语共鸣团队）。
+2. 基座模型 Qwen2.5 系列权重不在本仓库分发范围内，其使用受 Qwen 研究许可证
+   （Qwen Research License）约束，详见 licenses/ 与 第三方来源.md。
+3. 官方赛题框架派生代码、训练数据、分类器和角色素材等其他第三方资源的再分发
+   许可以 第三方来源.md 中的记录为准；未明确许可的资源不因本仓库开源而获得
+   开放许可。
