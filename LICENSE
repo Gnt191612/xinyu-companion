@@ -1,0 +1,31 @@
+MIT License
+
+Copyright (c) 2026 Gnt191612 (心语共鸣 · Xinyu Companion Team)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--------------------------------------------------------------------------
+
+第三方组件与模型许可边界（中文说明，仅供参考，不影响上述英文许可文本效力）：
+
+1. 本仓库源代码（训练、评估、推理适配、交互与打包脚本）依上述 MIT 许可发布。
+2. 基座模型 Qwen2.5 系列权重不在本仓库分发范围内，其使用受 Qwen 研究许可证
+   （Qwen Research License）约束，详见 licenses/、NOTICE 与 第三方来源.md。
+3. 官方赛题框架派生代码、训练数据、角色素材等其他第三方资源，其再分发许可
+   以 第三方来源.md 中的记录为准；未明确许可的资源不因本仓库开源而获得开放许可。
